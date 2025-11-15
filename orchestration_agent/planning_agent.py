@@ -119,19 +119,22 @@ class ContextSummarizerOutputSchema(BaseIOSchema):
     key_facts: List[str] = Field(..., description="List of important facts to remember (e.g., identified products, basket state, incomplete operations)")
     current_state: str = Field(..., description="Description of the current state and what still needs to be done")
 
-# from openai import OpenAI as OpenRouterClient
-# instructor.from_openai(openai.OpenAI())
+from openai import OpenAI as OpenRouterClient
+client = instructor.from_openai(openai.OpenAI())
+model="gpt-5"
+model_api_parameters = {
+}
+
 # api_key = os.getenv("OPENROUTER_API_KEY")
 # client = instructor.from_openai(OpenRouterClient(base_url="https://openrouter.ai/api/v1", api_key=api_key), mode= instructor.Mode.JSON)
 # model = "google/gemini-2.5-flash"
 # model_api_parameters = {
-#               #"provider": {"order": ["cerebras"]}
 # }
 
-client = instructor.from_cerebras(Cerebras(api_key=os.getenv("CEREBRAS_API_KEY_PERSONAL")), mode=instructor.Mode.CEREBRAS_TOOLS)
-model = "gpt-oss-120b"
-model_api_parameters = {
-}
+# client = instructor.from_cerebras(Cerebras(api_key=os.getenv("CEREBRAS_API_KEY")), mode=instructor.Mode.CEREBRAS_TOOLS)
+# model = "gpt-oss-120b"
+# model_api_parameters = {
+# }
 #######################
 # AGENT CONFIGURATION #
 #######################
